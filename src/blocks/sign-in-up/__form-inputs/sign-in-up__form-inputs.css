@@ -1,0 +1,6 @@
+.sign-in-up__form-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: 40px 0 0;
+}

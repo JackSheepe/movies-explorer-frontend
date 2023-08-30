@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Фильмы</title>
+	<link rel="stylesheet" href="pages/index.css">
+</head>
+<body class="root">
+	<header class="header">
+		<a href="#header" class="header__logo link">
+			<img src="images/logo.svg" alt="movies логотип" class="header__logo-img">
+		</a>
+		<nav class="header__menu">
+			<!-- <a href="/movies" class="header__menu-link link">Фильмы</a>
+			<a href="/saved-movies" class="header__menu-link link">Сохранённые Фильмы</a>
+			<a href="/acc" class="header__menu-link link header__menu-link_with-icon">Аккаунт <img class="header__acc-icon" src="images/profile.svg" alt="иконка аккаунта"></a> -->
+			<a href="/sign-up" class="header__menu-link link">Регистрация</a>
+			<a href="/sign-in" class="header__menu-link link header__menu-link_login">Войти</a>
+		</nav>
+	</header>
+	<main class="main">
+		<section class="section hero" id="hero">
+			<div class="hero__heading">
+				<h1 class="hero__heading-text">Учебный проект студента факультета Веб-разработки.</h1>
+			</div>
+			<nav class="hero__nav">
+				<a href="#about" class="hero__nav-link link">О проекте</a>
+				<a href="#tech" class="hero__nav-link link">Технологии</a>
+				<a href="#student" class="hero__nav-link link">Студент</a>
+			</nav>
+		</section>
+		<section class="section about" id="about">
+				<h2 class="section__heading">О проекте</h2>
+				<div class="about__stages">
+					<div class="about__stage">
+						<h3 class="about__stage-heading">Дипломный проект включал 5 этапов</h3>
+						<p class="about__stage-description">Составление плана, работу над бэкендом, вёрстку, добавление функциональности и финальные доработки.</p>
+					</div>
+					<div class="about__stage">
+						<h3 class="about__stage-heading">На выполнение диплома ушло 5 недель</h3>
+						<p class="about__stage-description">У каждого этапа был мягкий и жёсткий дедлайн, которые нужно было соблюдать, чтобы успешно защититься.</p>
+					</div>
+				</div>
+				<div class="about__timeline">
+					<span class="about__timeline-backend">
+						<p class="about__timeline-time-text about__timeline-time-text_backend">1 неделя</p>
+						<p class="about__timeline-work-text">back-end</p>
+					</span>
+					<span class="about__timeline-frontend">
+						<p class="about__timeline-time-text about__timeline-time-text_frontend">4 неделя</p>
+						<p class="about__timeline-work-text">front-end</p>
+					</span>
+				</div>
+		</section>
+		<section class="section  tech" id="tech">
+				<h2 class="section__heading">Технологии</h2>
+				<h3 class="tech__heading">7 технологий</h3>
+				<p class="tech__description">На курсе веб-разработки мы освоили технологии, которые применили в дипломном проекте.</p>
+				<ul class="tech__list">
+					<li class="tech__list-el">HTML</li>
+					<li class="tech__list-el">CSS</li>
+					<li class="tech__list-el">JS</li>
+					<li class="tech__list-el">React</li>
+					<li class="tech__list-el">Git</li>
+					<li class="tech__list-el">Express.js</li>
+					<li class="tech__list-el">mongoDB</li>
+				</ul>
+		</section>
+		<section class="section student" id="student">
+				<h2 class="section__heading">Студент</h2>
+				<div class="student__card">
+					<div class="student__text">
+						<h3 class="student__text-name">Владимир</h3>
+						<p class="student__text-job">Фронтенд-разработчик, 23 года</p>
+						<p class="student__text-about">
+							Во время обучения на графического дизайнера обнаружил для себя что мне интересно создавать сайты, со временем понял, что я хочу чтобы эти сайты можно было "тыкать" и начал изучать html, css и js. Понял что информация в интернете плохо структурирована и нет нормальных практических заданий, поэтому решил пройти курс по веб-разработке. Благодоря курсу и дополнительному самостоятельному обучению я могу создавать полноценные веб-приложения, сервисы и статические сайты.
+						</p>
+						<a class="student__link-git link" href="https://github.com/JackSheepe">Github</a>
+					</div>
+					<div class="student__img-container">
+						<img class="student__img" src="images/student.png" alt="Фото студента">
+					</div>
+				</div>
+				<h4 class="student__portfolio-header">Портфолио</h4>
+				<ul class="student__portfolio">
+					<li class="student__portfolio-link-container">
+						<a href="https://jacksheepe.github.io/how-to-learn/" class="student__portfolio-link link">Статичный сайт</a>
+						<img  class="student__portfolio-link-icon" src="images/othersite.svg" alt="иконка перехода на другой сайт">
+					</li>
+					<li class="student__portfolio-link-container">
+						<a href="https://jacksheepe.github.io/russian-travel/" class="student__portfolio-link link">Адаптивный сайт</a>
+						<img  class="student__portfolio-link-icon" src="images/othersite.svg" alt="иконка перехода на другой сайт">
+					</li>
+					<li class="student__portfolio-link-container student__portfolio-link-container_noline">
+						<a href="https://jacksheepe.github.io/mesto/" class="student__portfolio-link link">Одностраничное приложение</a>
+						<img  class="student__portfolio-link-icon" src="images/othersite.svg" alt="иконка перехода на другой сайт">
+					</li>
+				</ul>
+		</section>
+	</main>
+	<footer class="footer">
+		<p class="footer__project">
+			Учебный проект Яндекс.Практикум х BeatFilm.
+		</p>
+		<div class="footer__links">
+			<p class="footer__copyright">&#169; 2023</p>
+			<div class="footer__links-container">
+				<a class="footer__link link" href="https://practicum.yandex.ru/">Яндекс.Практикум</a>
+				<a class="footer__link link" href="https://github.com/JackSheepe">Github</a>
+			</div>
+		</div>
+	</footer>
+</body>
+</html>

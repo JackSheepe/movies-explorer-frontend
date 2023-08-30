@@ -1,0 +1,12 @@
+.student__card {
+	display: flex;
+	width: 100%;
+	margin-top: 66px;
+}
+
+@media (max-width: 594px) {
+  .student__card {
+    flex-wrap: wrap;
+    margin-top: 60px;
+  }
+}

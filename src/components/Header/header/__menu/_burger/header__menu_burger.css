@@ -1,0 +1,19 @@
+.header__menu_burger {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  width: 520px;
+  height: 100%;
+  background-color: white;
+  padding: 105px 0 92px;
+}
+
+@media (max-width: 521px) {
+  .header__menu_burger {
+    width: 100%;
+  }
+}

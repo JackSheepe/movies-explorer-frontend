@@ -1,0 +1,14 @@
+.sign-in-up__form-input {
+  height: 46px;
+  border-radius: 8px;
+  background: #f9f9f9;
+  border: none;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+.sign-in-up__form-input:focus {
+  outline: none;
+}

@@ -1,0 +1,14 @@
+.header__menu-link_login {
+  color: white;
+  width: 76px;
+  border-radius: 3px;
+  background: #000;
+  text-align: center;
+  margin: 0;
+}
+
+@media (max-width: 594px) {
+  .header__menu-link_login {
+    width: 54px;
+  }
+}

@@ -1,0 +1,15 @@
+.about__timeline-time-text {
+	height: 36px;
+	box-sizing: border-box;
+	text-align: center;
+	font-size: 14px;
+	font-weight: 400;
+	padding: 9px 0;
+	margin: 0;
+}
+
+@media (max-width: 594px) {
+  .about__timeline-time-text {
+    font-size: 11px;
+  }
+}

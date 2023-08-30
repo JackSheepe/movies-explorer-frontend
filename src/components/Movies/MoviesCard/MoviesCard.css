@@ -1,0 +1,129 @@
+.movie {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.movie:hover .movie__like-icon_false {
+  display: block;
+}
+
+.movie:hover .movie__like-icon_delete {
+  display: block;
+}
+
+.movie__img-container {
+  height: 201px;
+  position: relative;
+}
+
+.movie__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.movie__like-icon {
+  position: absolute;
+  border: none;
+  top: 14px;
+  right: 14px;
+  cursor: pointer;
+}
+
+.movie__like-icon_true {
+  width: 21px;
+  height: 21px;
+  border-radius: 50%;
+  background: url(../../../images/save.svg);
+}
+
+.movie__like-icon_delete {
+  display: none;
+  width: 21px;
+  height: 21px;
+  border-radius: 50%;
+  background: url(../../../images/delete.svg);
+}
+
+.movie__like-icon_false {
+  display: none;
+  border-radius: 30px;
+  background: #f9f9f9;
+  padding: 7px 6px;
+  text-align: center;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 9px;
+}
+
+.movie__description {
+  display: flex;
+  height: 32px;
+  margin-top: 10px;
+  padding: 0 14px;
+}
+
+.movie__name {
+  max-width: 250px;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: normal;
+  margin: 0;
+}
+
+.movie__length {
+  height: 18px;
+  box-sizing: border-box;
+  color: rgba(160, 160, 160, 1);
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 10px;
+  padding: 3px 4px;
+  background-color: rgba(249, 249, 249, 1);
+  margin: 0;
+  margin-left: auto;
+}
+
+@media (max-width: 768px) {
+  .movie__description {
+    height: 21px;
+    margin-top: 25px;
+    padding: 0;
+  }
+  .movie__name {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .movie__img-container {
+    height: 190px;
+  }
+  .movie__length {
+    padding: 3px 6px;
+  }
+}
+
+@media (max-width: 594px) {
+  .movie__like-icon_false {
+    display: block;
+  }
+  .movie__like-icon_delete {
+    display: block;
+  }
+  .movie__img-container {
+    height: 168px;
+  }
+  .movie__description {
+    height: 15px;
+    margin-top: 16px;
+  }
+  .movie__name {
+    font-size: 12px;
+  }
+}

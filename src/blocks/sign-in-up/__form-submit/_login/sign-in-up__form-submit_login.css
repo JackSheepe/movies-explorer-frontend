@@ -1,0 +1,9 @@
+.sign-in-up__form-submit_login {
+  margin-top: 179px;
+}
+
+@media (max-width: 594px) {
+  .sign-in-up__form-submit_login {
+    margin-top: 267px;
+  }
+}

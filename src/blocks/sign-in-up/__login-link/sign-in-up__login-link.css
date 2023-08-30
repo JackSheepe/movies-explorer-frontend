@@ -1,0 +1,13 @@
+.sign-in-up__login-link {
+  color: #a0a0a0;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+@media (max-width: 594px) {
+  .sign-in-up__login-link {
+    font-size: 12px;
+  }
+}

@@ -1,0 +1,9 @@
+@import url(./student/student.css);
+@import url(./student/__card/student__card.css);
+@import url(./student/__link-git/student__link-git.css);
+@import url(./student/__text-about/student__text-about.css);
+@import url(./student/__text-job/student__text-job.css);
+@import url(./student/__text-name/student__text-name.css);
+@import url(./student/__text/student__text.css);
+@import url(./student/__img-container/student__img-container.css);
+@import url(./student/__img/student__img.css);

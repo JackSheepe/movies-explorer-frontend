@@ -1,0 +1,16 @@
+.footer__copyright {
+  color: #000;
+  text-align: right;
+  font-feature-settings: "clig" off, "liga" off;
+  font-size: 13px;
+  font-weight: 400;
+  margin: 0;
+  margin-right: auto;
+}
+
+@media (max-width: 594px) {
+  .footer__copyright {
+    font-size: 12px;
+    margin: 30px auto 0;
+  }
+}

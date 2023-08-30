@@ -1,0 +1,28 @@
+.movies {
+  padding: 70px 70px 0;
+}
+
+.movies__separate {
+  width: 100%;
+  height: 1px;
+  background-color: #e8e8e8;
+  margin: 69px 0 80px;
+}
+
+@media (max-width: 768px) {
+  .movies {
+    padding: 80px 30px 0;
+  }
+  .movies__separate {
+    margin: 109px 0 80px;
+  }
+}
+
+@media (max-width: 594px) {
+  .movies {
+    padding: 80px 10px 0;
+  }
+  .movies__separate {
+    margin: 45px 0 50px;
+  }
+}

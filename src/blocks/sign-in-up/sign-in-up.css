@@ -1,0 +1,13 @@
+.sign-in-up {
+  display: flex;
+  flex-direction: column;
+  width: 396px;
+  box-sizing: border-box;
+  margin: 70px auto;
+}
+
+@media (max-width: 594px) {
+  .sign-in-up {
+    width: 260px;
+  }
+}
