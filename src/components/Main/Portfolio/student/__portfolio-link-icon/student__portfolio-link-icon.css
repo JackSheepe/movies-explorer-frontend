@@ -1,5 +1,6 @@
 .student__portfolio-link-icon {
-	width: 19px;
-	height: 19px;
-	margin-left: auto;
+  width: 19px;
+  height: 19px;
+  cursor: pointer;
+  margin-left: auto;
 }

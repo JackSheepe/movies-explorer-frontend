@@ -1,7 +1,9 @@
 import React from "react";
 import "./Profile.css";
 
-function Profile() {
+function Profile(props) {
+  props.useDocumentTitle("Профиль");
+
   const [email, setEmail] = React.useState("email@email.ru");
   const [name, setName] = React.useState("Владимир");
 

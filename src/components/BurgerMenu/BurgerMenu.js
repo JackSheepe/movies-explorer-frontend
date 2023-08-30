@@ -53,7 +53,7 @@ export default function BurgerMenu(props) {
           >
             Аккаунт
             <img
-              class="header__acc-icon"
+              className="header__acc-icon"
               src={acc_gray}
               alt="иконка аккаунта"
             ></img>

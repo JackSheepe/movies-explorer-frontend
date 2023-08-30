@@ -3,6 +3,8 @@ import SearchForm from "../Movies/SearchForm/SearchForm";
 import MoviesCardList from "../Movies/MoviesCardList/MoviesCardList";
 
 function SavedMovies(props) {
+  props.useDocumentTitle("Сохранённые Фильмы");
+
   return (
     <main className="movies movies_saved">
       <SearchForm />

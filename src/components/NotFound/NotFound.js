@@ -2,8 +2,9 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./NotFound.css";
 
-function NotFound() {
+function NotFound(props) {
   const navigate = useNavigate();
+  props.useDocumentTitle("404");
 
   return (
     <div className="not-found">

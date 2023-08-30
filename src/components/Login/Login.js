@@ -4,6 +4,8 @@ import "./Login.css";
 import logo from "../../images/logo.svg";
 
 function Login(props) {
+  props.useDocumentTitle("Войти");
+
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [isValid, setIsValid] = React.useState(true);

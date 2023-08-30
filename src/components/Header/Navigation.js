@@ -46,7 +46,7 @@ function Navigation(props) {
           >
             Аккаунт
             <img
-              class="header__acc-icon"
+              className="header__acc-icon"
               src={location.pathname === "/" ? acc : acc_gray}
               alt="иконка аккаунта"
             ></img>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, Switch } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import Header from "./Header/Header";
 import Footer from "./Footer/Footer";
@@ -21,6 +21,12 @@ function App() {
 
   function handleBurgerMenuClick() {
     setIsBurgerMenuOpen(!isBurgerMenuOpen);
+  }
+
+  function useDocumentTitle(title) {
+    React.useEffect(() => {
+      document.title = title;
+    }, [title]);
   }
 
   const [movies, setMovies] = React.useState([
@@ -142,13 +148,38 @@ function App() {
         onBurgerClick={handleBurgerMenuClick}
       />
       <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="/movies" element={<Movies movies={movies} />} />
-        <Route path="/saved-movies" element={<SavedMovies movies={movies} />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/signin" element={<Login />} />
-        <Route path="/signup" element={<Register />} />
-        <Route path="*" element={<NotFound />} />
+        <Route
+          path="/"
+          element={<Main useDocumentTitle={useDocumentTitle} />}
+        />
+        <Route
+          path="/movies"
+          element={
+            <Movies movies={movies} useDocumentTitle={useDocumentTitle} />
+          }
+        />
+        <Route
+          path="/saved-movies"
+          element={
+            <SavedMovies movies={movies} useDocumentTitle={useDocumentTitle} />
+          }
+        />
+        <Route
+          path="/profile"
+          element={<Profile useDocumentTitle={useDocumentTitle} />}
+        />
+        <Route
+          path="/signin"
+          element={<Login useDocumentTitle={useDocumentTitle} />}
+        />
+        <Route
+          path="/signup"
+          element={<Register useDocumentTitle={useDocumentTitle} />}
+        />
+        <Route
+          path="*"
+          element={<NotFound useDocumentTitle={useDocumentTitle} />}
+        />
       </Routes>
       <Footer />
       <BurgerMenu
