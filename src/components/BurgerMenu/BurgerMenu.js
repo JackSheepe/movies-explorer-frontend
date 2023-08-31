@@ -12,15 +12,12 @@ export default function BurgerMenu(props) {
     props.isBurgerMenuOpen && (
       <div className="burger-menu">
         <div className="burger-menu__back" onClick={handleBackClick}></div>
-        <nav
-          className="header__menu header__menu_burger"
-          onClick={handleBackClick}
-        >
-          <button className="burger-menu__close btn"></button>
+        <nav className="burger-menu__nav" onClick={handleBackClick}>
+          <button className="burger-menu__close btn" type="button"></button>
           <NavLink
             className={({ isActive }) =>
-              `header__menu-link header__menu-link_burger header__menu-link_movies link ${
-                isActive ? "header__menu-link_active" : ""
+              `burger-menu__nav-link link ${
+                isActive ? "burger-menu__nav-link_active" : ""
               }`
             }
             to={"/"}
@@ -29,8 +26,8 @@ export default function BurgerMenu(props) {
           </NavLink>
           <NavLink
             className={({ isActive }) =>
-              `header__menu-link header__menu-link_burger header__menu-link_movies link ${
-                isActive ? "header__menu-link_active" : ""
+              `burger-menu__nav-link link ${
+                isActive ? "burger-menu__nav-link_active" : ""
               }`
             }
             to={"movies"}
@@ -39,8 +36,8 @@ export default function BurgerMenu(props) {
           </NavLink>
           <NavLink
             className={({ isActive }) =>
-              `header__menu-link header__menu-link_burger header__menu-link_movies link ${
-                isActive ? "header__menu-link_active" : ""
+              `burger-menu__nav-link link ${
+                isActive ? "burger-menu__nav-link_active" : ""
               }`
             }
             to={"/saved-movies"}
@@ -48,12 +45,12 @@ export default function BurgerMenu(props) {
             Сохранённые Фильмы
           </NavLink>
           <NavLink
-            className="header__menu-link link header__menu-link_with-icon"
+            className="burger-menu__nav-link burger-menu__nav-link_acc"
             to={"/profile"}
           >
             Аккаунт
             <img
-              className="header__acc-icon"
+              className="burger-menu__acc-icon"
               src={acc_gray}
               alt="иконка аккаунта"
             ></img>

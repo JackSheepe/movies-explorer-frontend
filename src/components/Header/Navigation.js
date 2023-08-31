@@ -18,6 +18,7 @@ function Navigation(props) {
             <button
               className="header__menu-burger btn"
               onClick={handleBurgerClick}
+              type="button"
             ></button>
           )}
           <NavLink

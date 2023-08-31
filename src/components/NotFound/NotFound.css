@@ -11,16 +11,16 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: auto;
+  margin-top: 246px;
 }
 .not-found__heading {
-  font-size: 80px;
+  font-size: 140px;
   font-weight: 400;
   margin: 0;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 .not-found__text {
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 400;
 }
 .not-found__back {
@@ -29,6 +29,31 @@
   background: none;
   border: none;
   margin-top: auto;
-  margin-bottom: 70px;
+  margin-bottom: 60px;
   cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .not-found__container {
+    margin-top: 408px;
+  }
+  .not-found__back {
+    margin-bottom: 222px;
+  }
+}
+
+@media (max-width: 594px) {
+  .not-found__container {
+    margin-top: 329px;
+  }
+  .not-found__heading {
+    font-size: 80px;
+    margin-bottom: 10px;
+  }
+  .not-found__text {
+    font-size: 12px;
+  }
+  .not-found__back {
+    margin-bottom: 30px;
+  }
 }

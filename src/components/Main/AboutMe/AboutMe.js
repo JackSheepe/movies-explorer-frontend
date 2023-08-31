@@ -22,6 +22,7 @@ export default function AboutMe() {
           <a
             className="student__link-git link"
             href="https://github.com/JackSheepe"
+            target="_blank"
           >
             Github
           </a>

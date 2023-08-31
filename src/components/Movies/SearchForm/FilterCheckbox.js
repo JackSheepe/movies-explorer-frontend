@@ -8,7 +8,7 @@ function FilterCheckbox() {
   };
 
   return (
-    <div className="search-form__checkbox-container">
+    <div className="search-form__checkbox-container btn">
       <input
         id="checkbox"
         type="checkbox"

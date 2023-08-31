@@ -4,7 +4,6 @@
   height: 44px;
   border: none;
   background: url(../../../../images/burger.svg) no-repeat;
-  background-image: center;
   cursor: pointer;
 }
 

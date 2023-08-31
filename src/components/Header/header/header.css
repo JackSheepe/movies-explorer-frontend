@@ -4,17 +4,17 @@
   box-sizing: border-box;
   align-items: center;
   justify-content: center;
-  padding: 0 70px;
+  padding: 18px 70px;
 }
 
 @media (max-width: 768px) {
   .header {
-    padding: 0 30px;
+    padding: 18px 30px;
   }
 }
 
 @media (max-width: 320px) {
   .header {
-    padding: 0 14px;
+    padding: 18px 14px;
   }
 }

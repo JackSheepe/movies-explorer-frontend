@@ -1,5 +1,6 @@
 import React from "react";
 import "./Profile.css";
+import { Link } from "react-router-dom";
 
 function Profile(props) {
   props.useDocumentTitle("Профиль");
@@ -15,44 +16,49 @@ function Profile(props) {
   };
 
   return (
-    <div className="profile">
-      <h1 className="profile__heading">Привет, Владимир!</h1>
-      <form className="profile__form" onSubmit={handleSubmit}>
-        <div className="profile__form-inputs">
-          <div className="profile__form-input-container">
-            <label htmlFor="name" className="profile__form-input-label">
-              Имя:
-            </label>
-            <input
-              className="profile__form-input"
-              type="name"
-              id="name"
-              value={name}
-              onChange={handleNameChange}
-              placeholder="Имя"
-            />
+    <main>
+      <section className="profile">
+        <h1 className="profile__heading">Привет, Владимир!</h1>
+        <form className="profile__form" onSubmit={handleSubmit}>
+          <div className="profile__form-inputs">
+            <div className="profile__form-input-container">
+              <label htmlFor="name" className="profile__form-input-label">
+                Имя
+              </label>
+              <input
+                className="profile__form-input"
+                type="name"
+                id="name"
+                value={name}
+                onChange={handleNameChange}
+                placeholder="Имя"
+                minlength="2"
+                maxlength="30"
+              />
+            </div>
+            <div className="profile__form-input-container">
+              <label htmlFor="email" className="profile__form-input-label">
+                E-mail
+              </label>
+              <input
+                className="profile__form-input"
+                type="email"
+                id="email"
+                value={email}
+                onChange={handleEmailChange}
+                placeholder="E-mail"
+              />
+            </div>
           </div>
-          <hr className="profile__separate" />
-          <div className="profile__form-input-container">
-            <label htmlFor="email" className="profile__form-input-label">
-              E-mail
-            </label>
-            <input
-              className="profile__form-input"
-              type="email"
-              id="email"
-              value={email}
-              onChange={handleEmailChange}
-              placeholder="E-mail"
-            />
-          </div>
-        </div>
-        <button className="profile__form-submit btn" type="submit">
-          Редактировать
-        </button>
-      </form>
-      <button className="profile__exit-btn btn">Выйти из аккаунта</button>
-    </div>
+          <button className="profile__form-submit btn" type="submit">
+            Редактировать
+          </button>
+        </form>
+        <Link to="/" className="profile__exit-btn btn">
+          Выйти из аккаунта
+        </Link>
+      </section>
+    </main>
   );
 }
 

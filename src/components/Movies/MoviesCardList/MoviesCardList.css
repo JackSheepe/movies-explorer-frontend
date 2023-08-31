@@ -30,7 +30,7 @@
   margin: 64px auto 85px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1170px) {
   .movies-card-list__movies {
     row-gap: 42px;
     grid-template-columns: repeat(2, 1fr);
@@ -40,7 +40,7 @@
   }
 }
 
-@media (max-width: 594px) {
+@media (max-width: 658px) {
   .movies-card-list__movies {
     grid-template-columns: 1fr;
     row-gap: 39px;

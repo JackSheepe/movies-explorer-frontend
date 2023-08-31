@@ -14,12 +14,13 @@ export default function Portfolio() {
             target="_blank"
           >
             Статичный сайт
+            <span className="student__portfolio-link-icon">
+              <img
+                src={othersiteIcon}
+                alt="иконка перехода на другой сайт"
+              ></img>
+            </span>
           </a>
-          <img
-            className="student__portfolio-link-icon"
-            src={othersiteIcon}
-            alt="иконка перехода на другой сайт"
-          ></img>
         </li>
         <li className="student__portfolio-link-container">
           <a
@@ -28,12 +29,13 @@ export default function Portfolio() {
             target="_blank"
           >
             Адаптивный сайт
+            <span className="student__portfolio-link-icon">
+              <img
+                src={othersiteIcon}
+                alt="иконка перехода на другой сайт"
+              ></img>
+            </span>
           </a>
-          <img
-            className="student__portfolio-link-icon"
-            src={othersiteIcon}
-            alt="иконка перехода на другой сайт"
-          ></img>
         </li>
         <li className="student__portfolio-link-container student__portfolio-link-container_noline">
           <a
@@ -42,12 +44,13 @@ export default function Portfolio() {
             target="_blank"
           >
             Одностраничное приложение
+            <span className="student__portfolio-link-icon">
+              <img
+                src={othersiteIcon}
+                alt="иконка перехода на другой сайт"
+              ></img>
+            </span>
           </a>
-          <img
-            className="student__portfolio-link-icon"
-            src={othersiteIcon}
-            alt="иконка перехода на другой сайт"
-          ></img>
         </li>
       </ul>
     </React.Fragment>

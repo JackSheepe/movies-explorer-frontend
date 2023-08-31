@@ -6,8 +6,15 @@
   margin: 70px auto;
 }
 
+@media (max-width: 768px) {
+  .sign-in-up {
+    margin: auto;
+  }
+}
+
 @media (max-width: 594px) {
   .sign-in-up {
     width: 260px;
+    margin: 56px auto;
   }
 }

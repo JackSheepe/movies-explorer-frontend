@@ -54,6 +54,7 @@ function MoviesCardList(props) {
         ? visibleCards <
             props.movies.filter((movie) => movie.isLiked).length && (
             <button
+              type="button"
               className="movies-card-list__btn-more btn"
               onClick={handleShowMore}
             >
@@ -62,6 +63,7 @@ function MoviesCardList(props) {
           )
         : visibleCards < props.movies.length && (
             <button
+              type="button"
               className="movies-card-list__btn-more btn"
               onClick={handleShowMore}
             >

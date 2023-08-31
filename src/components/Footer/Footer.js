@@ -16,22 +16,26 @@ export default function Footer() {
       </p>
       <div className="footer__links">
         <p className="footer__copyright">&#169; {new Date().getFullYear()}</p>
-        <div className="footer__links-container">
-          <a
-            className="footer__link link"
-            href="https://practicum.yandex.ru/"
-            target="_blank"
-          >
-            Яндекс.Практикум
-          </a>
-          <a
-            className="footer__link link"
-            href="https://github.com/JackSheepe"
-            target="_blank"
-          >
-            Github
-          </a>
-        </div>
+        <ul className="footer__links-container">
+          <li className="footer__link-container">
+            <a
+              className="footer__link link"
+              href="https://practicum.yandex.ru/"
+              target="_blank"
+            >
+              Яндекс.Практикум
+            </a>
+          </li>
+          <li className="footer__link-container">
+            <a
+              className="footer__link link"
+              href="https://github.com/JackSheepe"
+              target="_blank"
+            >
+              Github
+            </a>
+          </li>
+        </ul>
       </div>
     </footer>
   );

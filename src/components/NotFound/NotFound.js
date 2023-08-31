@@ -7,15 +7,21 @@ function NotFound(props) {
   props.useDocumentTitle("404");
 
   return (
-    <div className="not-found">
-      <div className="not-found__container">
-        <h1 className="not-found__heading">404</h1>
-        <p className="not-found__text">Страница не найдена</p>
-      </div>
-      <button className="not-found__back btn" onClick={() => navigate(-1)}>
-        Назад
-      </button>
-    </div>
+    <main>
+      <section className="not-found">
+        <div className="not-found__container">
+          <h1 className="not-found__heading">404</h1>
+          <p className="not-found__text">Страница не найдена</p>
+        </div>
+        <button
+          type="button"
+          className="not-found__back btn"
+          onClick={() => navigate(-1)}
+        >
+          Назад
+        </button>
+      </section>
+    </main>
   );
 }
 

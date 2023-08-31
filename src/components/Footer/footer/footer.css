@@ -1,10 +1,13 @@
 .footer {
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  margin-top: 74px;
+  margin-top: auto;
+  padding-top: 74px;
 }
 
 @media (max-width: 768px) {
   .footer {
-    margin-top: 59px;
+    padding-top: 59px;
   }
 }

@@ -13,6 +13,7 @@ function MoviesCard(props) {
           alt={props.movie.name}
         ></img>
         <button
+          type="button"
           className={`movie__like-icon btn ${
             location.pathname === "/saved-movies"
               ? "movie__like-icon_delete"
@@ -25,7 +26,7 @@ function MoviesCard(props) {
         </button>
       </div>
       <div className="movie__description">
-        <h3 className="movie__name">{props.movie.name}</h3>
+        <h2 className="movie__name">{props.movie.name}</h2>
         <p className="movie__length">{props.movie.time}</p>
       </div>
     </li>
