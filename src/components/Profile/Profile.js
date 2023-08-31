@@ -27,13 +27,13 @@ function Profile(props) {
               </label>
               <input
                 className="profile__form-input"
-                type="name"
+                type="text"
                 id="name"
                 value={name}
                 onChange={handleNameChange}
                 placeholder="Имя"
-                minlength="2"
-                maxlength="30"
+                minLength="2"
+                maxLength="30"
               />
             </div>
             <div className="profile__form-input-container">

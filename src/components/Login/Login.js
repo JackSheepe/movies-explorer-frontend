@@ -27,7 +27,7 @@ function Login(props) {
         <form className="sign-in-up__form" onSubmit={handleSubmit}>
           <div className="sign-in-up__form-inputs">
             <div className="sign-in-up__form-input-container">
-              <label htmlFor="name" className="sign-in-up__form-input-label">
+              <label htmlFor="email" className="sign-in-up__form-input-label">
                 E-mail
               </label>
               <input
@@ -38,11 +38,15 @@ function Login(props) {
                 id="email"
                 value={email}
                 onChange={handleEmailChange}
+                placeholder="E-mail"
                 required
               />
             </div>
             <div className="sign-in-up__form-input-container">
-              <label htmlFor="name" className="sign-in-up__form-input-label">
+              <label
+                htmlFor="password"
+                className="sign-in-up__form-input-label"
+              >
                 Пароль
               </label>
               <input
@@ -53,9 +57,10 @@ function Login(props) {
                 id="password"
                 value={password}
                 onChange={handlePasswordChange}
+                placeholder="Пароль"
                 required
-                minlength="8"
-                maxlength="30"
+                minLength="8"
+                maxLength="30"
               />
             </div>
           </div>
@@ -77,7 +82,7 @@ function Login(props) {
         </form>
         <Link to="/signup" className="sign-in-up__login-link link">
           Ещё не зарегистрированы?{" "}
-          <span className="sign-in-up__login-link-sign link">Регистрация</span>
+          <span className="sign-in-up__login-link-part">Регистрация</span>
         </Link>
       </section>
     </main>

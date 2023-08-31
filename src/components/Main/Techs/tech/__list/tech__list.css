@@ -2,6 +2,7 @@
   display: flex;
   gap: 10px;
   list-style: none;
+  justify-content: center;
   margin: 0 auto;
   padding: 0;
 }
@@ -9,6 +10,14 @@
 @media (max-width: 594px) {
   .tech__list {
     flex-wrap: wrap;
+    justify-content: center;
     padding: 0 50px;
+  }
+}
+
+@media (max-width: 406px) {
+  .tech__list::after {
+    content: "";
+    width: 84px;
   }
 }

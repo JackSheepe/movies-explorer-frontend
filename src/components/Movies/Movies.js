@@ -8,7 +8,6 @@ function Movies(props) {
   return (
     <main className="movies">
       <SearchForm />
-      <div className="movies__separate"></div>
       <MoviesCardList movies={props.movies} />
     </main>
   );

@@ -47,7 +47,7 @@
   margin-left: 20px;
 }
 .profile__form-input:focus {
-  outline: none;
+  outline: 1px solid #d4d4d4;
 }
 .profile__form-input-label {
   font-size: 11px;
@@ -89,10 +89,8 @@
     padding: 70px 0 40px;
   }
   .profile__form-inputs {
-    margin: 82px 0 379px;
-  }
-  .profile__separate {
     width: 260px;
+    margin: 82px 0 379px;
   }
   .profile__form-submit {
     font-size: 12px;

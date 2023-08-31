@@ -36,17 +36,18 @@ function Register(props) {
                 className={`sign-in-up__form-input ${
                   !isValid ? "sign-in-up__form-input_error" : ""
                 }}`}
-                type="name"
+                type="text"
                 id="name"
                 value={name}
                 onChange={handleNameChange}
+                placeholder="Имя"
                 required
-                minlength="2"
-                maxlength="30"
+                minLength="2"
+                maxLength="30"
               />
             </div>
             <div className="sign-in-up__form-input-container">
-              <label htmlFor="name" className="sign-in-up__form-input-label">
+              <label htmlFor="email" className="sign-in-up__form-input-label">
                 E-mail
               </label>
               <input
@@ -57,11 +58,15 @@ function Register(props) {
                 id="email"
                 value={email}
                 onChange={handleEmailChange}
+                placeholder="E-mail"
                 required
               />
             </div>
             <div className="sign-in-up__form-input-container">
-              <label htmlFor="name" className="sign-in-up__form-input-label">
+              <label
+                htmlFor="password"
+                className="sign-in-up__form-input-label"
+              >
                 Пароль
               </label>
               <input
@@ -72,9 +77,10 @@ function Register(props) {
                 id="password"
                 value={password}
                 onChange={handlePasswordChange}
+                placeholder="Пароль"
                 required
-                minlength="8"
-                maxlength="30"
+                minLength="8"
+                maxLength="30"
               />
             </div>
           </div>
@@ -93,7 +99,7 @@ function Register(props) {
         </form>
         <Link to="/signin" className="sign-in-up__login-link link">
           Уже зарегестрированы?{" "}
-          <span className="sign-in-up__login-link-sign link">Войти</span>
+          <span className="sign-in-up__login-link-part">Войти</span>
         </Link>
       </section>
     </main>
