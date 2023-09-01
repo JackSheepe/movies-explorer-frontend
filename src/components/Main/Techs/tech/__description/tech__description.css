@@ -1,0 +1,27 @@
+.tech__description {
+	max-width: 460px;
+	text-align: center;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 20px;
+	letter-spacing: -0.56px;
+	margin: 26px auto 100px;
+}
+
+@media (max-width: 768px) {
+  .tech__description {
+		font-size: 12px;
+		line-height: 18px;
+		letter-spacing: -0.48px;
+    margin: 22px auto 83px;
+  }
+}
+
+@media (max-width: 594px) {
+  .tech__description {
+		font-size: 11px;
+		line-height: 16px;
+		letter-spacing: -0.44px;
+    margin: 24px auto 50px;
+  }
+}

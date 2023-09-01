@@ -1,0 +1,23 @@
+.student__text-about {
+	color: #000;
+	font-feature-settings: 'clig' off, 'liga' off;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 22px;
+	margin: 0;
+}
+
+@media (max-width: 768px) {
+  .student__text-about {
+		font-size: 12px;
+		line-height: 18px;
+  }
+}
+
+@media (max-width: 594px) {
+  .student__text-about {
+		font-size: 11px;
+		line-height: 16px;
+  }
+}
+

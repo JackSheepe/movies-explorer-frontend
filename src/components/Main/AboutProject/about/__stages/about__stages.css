@@ -1,0 +1,15 @@
+.about__stages {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 40px;
+  margin-top: 70px;
+}
+
+@media (max-width: 594px) {
+  .about__stages {
+    flex-direction: column;
+    gap: 58px;
+    margin-top: 62px;
+  }
+}

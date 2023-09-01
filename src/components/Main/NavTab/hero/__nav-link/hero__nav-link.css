@@ -1,0 +1,15 @@
+.hero__nav-link {
+	color: #FFF;
+	font-size: 13px;
+	font-weight: 500;
+	line-height: 16px;
+	text-decoration-line: underline;
+	margin: 24px 0;
+}
+
+@media (max-width: 594px) {
+  .hero__nav-link {
+    font-size: 11px;
+  }
+}
+

@@ -1,0 +1,22 @@
+.about__stage-heading {
+	font-size: 20px;
+	font-weight: 400;
+	line-height: normal;
+	letter-spacing: -0.8px;
+	margin: 0;
+	margin-bottom: 26px;
+}
+
+@media (max-width: 768px) {
+  .about__stage-heading {
+    margin-bottom: 22px;
+  }
+}
+
+@media (max-width: 594px) {
+  .about__stage-heading {
+		font-size: 18px;
+		letter-spacing: -0.72px;
+    margin-bottom: 16px;
+  }
+}

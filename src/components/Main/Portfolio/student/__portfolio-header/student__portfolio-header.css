@@ -1,0 +1,21 @@
+.student__portfolio-header {
+	color: #A0A0A0;
+	font-feature-settings: 'clig' off, 'liga' off;
+	font-size: 18px;
+	font-weight: 400;
+	line-height: 20px;
+	margin: 100px 0 50px;
+}
+
+@media (max-width: 768px) {
+  .student__portfolio-header {
+    margin: 91px 0 50px;
+  }
+}
+
+@media (max-width: 594px) {
+  .student__portfolio-header {
+		font-size: 14px;
+    margin: 70px 0 40px;
+  }
+}

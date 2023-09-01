@@ -1,0 +1,14 @@
+.student__link-git {
+	text-decoration: none;
+	color: #000;
+	font-size: 14px;
+	font-weight: 500;
+	margin: 0;
+	margin-top: auto;
+}
+
+@media (max-width: 594px) {
+  .student__link-git {
+    margin-top: 40px;
+  }
+}

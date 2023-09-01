@@ -1,0 +1,13 @@
+@import url(../../blocks/sign-in-up/sign-in-up.css);
+@import url(../../blocks/sign-in-up/__logo/sign-in-up__logo.css);
+@import url(../../blocks/sign-in-up/__error-text/sign-in-up__error-text.css);
+@import url(../../blocks/sign-in-up/__error-text/_active/sign-in-up__error-text_active.css);
+@import url(../../blocks/sign-in-up/__form-input-container/sign-in-up__form-input-container.css);
+@import url(../../blocks/sign-in-up/__form-input-label/sign-in-up__form-input-label.css);
+@import url(../../blocks/sign-in-up/__form-input/sign-in-up__form-input.css);
+@import url(../../blocks/sign-in-up/__form-inputs/sign-in-up__form-inputs.css);
+@import url(../../blocks/sign-in-up/__form-submit/sign-in-up__form-submit.css);
+@import url(../../blocks/sign-in-up/__form/sign-in-up__form.css);
+@import url(../../blocks/sign-in-up/__heading/sign-in-up__heading.css);
+@import url(../../blocks/sign-in-up/__login-link/sign-in-up__login-link.css);
+@import url(../../blocks/sign-in-up/__login-link-part/sign-in-up__login-link-part.css);

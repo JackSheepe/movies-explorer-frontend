@@ -1,0 +1,31 @@
+.section {
+  padding: 110px 70px;
+}
+
+.section__heading {
+  color: #000;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.88px;
+  margin: 0;
+  padding-bottom: 24px;
+  border-bottom: black 1px solid;
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 90px 50px;
+  }
+}
+
+@media (max-width: 594px) {
+  .section {
+    padding: 70px 18px;
+  }
+  .section__heading {
+    font-size: 18px;
+    letter-spacing: -0.72px;
+    padding-bottom: 28px;
+  }
+}

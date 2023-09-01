@@ -1,0 +1,14 @@
+.student__portfolio-link-icon {
+  display: flex;
+  width: 19px;
+  height: 19px;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+@media (max-width: 594px) {
+  .student__portfolio-link-icon {
+    width: 11px;
+    height: 11px;
+  }
+}

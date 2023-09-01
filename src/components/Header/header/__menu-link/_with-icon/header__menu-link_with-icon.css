@@ -1,0 +1,16 @@
+.header__menu-link_with-icon {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16px;
+  margin-right: 0;
+  margin-left: 30px;
+}
+
+@media (max-width: 768px) {
+  .header__menu-link_with-icon {
+    display: none;
+  }
+}

@@ -1,0 +1,9 @@
+.about__timeline-backend {
+  width: 20%;
+}
+
+@media (max-width: 594px) {
+  .about__timeline-backend {
+    width: 35%;
+  }
+}
