@@ -4,6 +4,8 @@
 
 ## Дипломная работа, фронт-энд
 
+ссылка на pullRequest https://github.com/JackSheepe/movies-explorer-frontend/pull/2
+
 Использованный макет: light-4
 
 Использованные технологии
