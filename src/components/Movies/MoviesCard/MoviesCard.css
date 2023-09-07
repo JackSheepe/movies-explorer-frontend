@@ -25,6 +25,7 @@
   height: 100%;
   object-fit: cover;
   border-radius: 6px;
+  cursor: pointer;
 }
 
 .movie__like-icon {

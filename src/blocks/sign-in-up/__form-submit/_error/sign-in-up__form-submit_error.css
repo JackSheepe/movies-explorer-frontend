@@ -1,0 +1,5 @@
+.sign-in-up__form-submit_error {
+  cursor: default;
+  pointer-events: none;
+  background: #949292;
+}

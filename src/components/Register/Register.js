@@ -2,21 +2,16 @@ import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import "./Register.css";
 import logo from "../../images/logo.svg";
+import { useFormWithValidation } from "../../utils/useFormValidation";
 
 function Register(props) {
   props.useDocumentTitle("Регистрация");
-
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
-  const [name, setName] = React.useState("");
-  const [isValid, setIsValid] = React.useState(false);
-
-  const handleEmailChange = (event) => setEmail(event.target.value);
-  const handlePasswordChange = (event) => setPassword(event.target.value);
-  const handleNameChange = (event) => setName(event.target.value);
+  const { values, handleChange, errors, isValid } = useFormWithValidation();
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    props.onRegister(values.name, values.email, values.password);
   };
 
   return (
@@ -34,12 +29,13 @@ function Register(props) {
               </label>
               <input
                 className={`sign-in-up__form-input ${
-                  !isValid ? "sign-in-up__form-input_error" : ""
-                }}`}
+                  errors.name ? "sign-in-up__form-input_error" : ""
+                }`}
                 type="text"
+                name="name"
                 id="name"
-                value={name}
-                onChange={handleNameChange}
+                value={values.name || ""}
+                onChange={handleChange}
                 placeholder="Имя"
                 required
                 minLength="2"
@@ -52,12 +48,13 @@ function Register(props) {
               </label>
               <input
                 className={`sign-in-up__form-input ${
-                  !isValid ? "sign-in-up__form-input_error" : ""
-                }}`}
+                  errors.email ? "sign-in-up__form-input_error" : ""
+                }`}
                 type="email"
+                name="email"
                 id="email"
-                value={email}
-                onChange={handleEmailChange}
+                value={values.email || ""}
+                onChange={handleChange}
                 placeholder="E-mail"
                 required
               />
@@ -71,12 +68,13 @@ function Register(props) {
               </label>
               <input
                 className={`sign-in-up__form-input ${
-                  !isValid ? "sign-in-up__form-input_error" : ""
-                }}`}
+                  errors.password ? "sign-in-up__form-input_error" : ""
+                }`}
                 type="password"
+                name="password"
                 id="password"
-                value={password}
-                onChange={handlePasswordChange}
+                value={values.password || ""}
+                onChange={handleChange}
                 placeholder="Пароль"
                 required
                 minLength="8"
@@ -91,9 +89,14 @@ function Register(props) {
                 : "sign-in-up__error-text"
             }
           >
-            Что-то пошло не так...
+            {errors.name} {errors.email} {errors.password}{" "}
           </span>
-          <button className="sign-in-up__form-submit btn" type="submit">
+          <button
+            className={`sign-in-up__form-submit btn ${
+              !isValid ? "sign-in-up__form-submit_error" : ""
+            }`}
+            type="submit"
+          >
             Зарегестрироваться
           </button>
         </form>

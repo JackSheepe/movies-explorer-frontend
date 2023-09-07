@@ -1,18 +1,29 @@
 import React from "react";
 import "./Profile.css";
-import { Link } from "react-router-dom";
+import { CurrentUserContext } from "../../context/CurrentUserContext";
+import { useFormWithValidation } from "../../utils/useFormValidation";
 
 function Profile(props) {
   props.useDocumentTitle("Профиль");
 
-  const [email, setEmail] = React.useState("email@email.ru");
-  const [name, setName] = React.useState("Владимир");
+  const { values, handleChange, errors, isValid } = useFormWithValidation();
 
-  const handleEmailChange = (event) => setEmail(event.target.value);
-  const handleNameChange = (event) => setName(event.target.value);
+  const currentUser = React.useContext(CurrentUserContext);
+
+  const [isChanging, setIsChanging] = React.useState(false);
+
+  function handleChangeBtnClick() {
+    setIsChanging(!isChanging);
+    currentUser.name = "";
+    currentUser.email = "";
+    values.name = "";
+    values.email = "";
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    props.onSubmit(values.name, values.email);
   };
 
   return (
@@ -26,11 +37,14 @@ function Profile(props) {
                 Имя
               </label>
               <input
-                className="profile__form-input"
+                className={`profile__form-input ${
+                  isChanging ? "" : "profile__form-input_disabled"
+                }`}
                 type="text"
                 id="name"
-                value={name}
-                onChange={handleNameChange}
+                name="name"
+                value={values.name || currentUser.name}
+                onChange={handleChange}
                 placeholder="Имя"
                 minLength="2"
                 maxLength="30"
@@ -41,22 +55,54 @@ function Profile(props) {
                 E-mail
               </label>
               <input
-                className="profile__form-input"
+                className={`profile__form-input ${
+                  isChanging ? "" : "profile__form-input_disabled"
+                }`}
                 type="email"
                 id="email"
-                value={email}
-                onChange={handleEmailChange}
+                name="email"
+                value={values.email || currentUser.email}
+                onChange={handleChange}
                 placeholder="E-mail"
               />
             </div>
           </div>
-          <button className="profile__form-submit btn" type="submit">
+          <span
+            className={
+              !isValid
+                ? "profile__error-text profile__error-text_active"
+                : "profile__error-text"
+            }
+          >
+            {errors.name} {errors.email}
+          </span>
+          <button
+            className={`profile__form-submit btn ${
+              isChanging ? "profile__form-submit_shown" : ""
+            } ${isValid ? "" : "profile__form-submit_disabled"}`}
+            type="submit"
+            onClick={handleSubmit}
+          >
             Редактировать
           </button>
         </form>
-        <Link to="/" className="profile__exit-btn btn">
+        <button
+          className={`profile__form-change btn ${
+            isChanging ? "profile__form-change_hidden" : ""
+          }`}
+          type="button"
+          onClick={handleChangeBtnClick}
+        >
+          Редактировать
+        </button>
+        <button
+          className={`profile__exit-btn btn ${
+            isChanging ? "profile__exit-btn_hidden" : ""
+          }`}
+          onClick={props.onLogout}
+        >
           Выйти из аккаунта
-        </Link>
+        </button>
       </section>
     </main>
   );

@@ -1,33 +1,56 @@
+import React from "react";
 import "./MoviesCard.css";
 import { useLocation } from "react-router-dom";
 
 function MoviesCard(props) {
   const location = useLocation();
+  const [isLiked, setIsLiked] = React.useState(props.movie.isLiked);
+
+  function handleImgClick() {
+    window.open(props.movie.trailerLink, "_blank");
+  }
+
+  function handleLikeClick() {
+    setIsLiked(!isLiked);
+    props.onLike(props.movie, isLiked);
+  }
 
   return (
     <li className="movie">
       <div className="movie__img-container">
         <img
-          className="movie__img"
-          src={props.movie.cover}
-          alt={props.movie.name}
+          className="movie__img btn"
+          src={
+            location.pathname === "/saved-movies"
+              ? props.movie.image
+              : `https://api.nomoreparties.co${props.movie.image.url}`
+          }
+          alt={props.movie.nameRU}
+          onClick={handleImgClick}
         ></img>
         <button
+          onClick={handleLikeClick}
           type="button"
           className={`movie__like-icon btn ${
             location.pathname === "/saved-movies"
               ? "movie__like-icon_delete"
-              : props.movie.isLiked
+              : isLiked
               ? "movie__like-icon_true"
               : "movie__like-icon_false"
           }`}
         >
-          {!props.movie.isLiked ? "Сохранить" : ""}
+          {!isLiked ? "Сохранить" : ""}
         </button>
       </div>
       <div className="movie__description">
-        <h2 className="movie__name">{props.movie.name}</h2>
-        <p className="movie__length">{props.movie.time}</p>
+        <h2 className="movie__name">{props.movie.nameRU}</h2>
+        <p className="movie__length">
+          {props.movie.duration > 60
+            ? `${Math.floor(props.movie.duration / 60)}ч ${
+                props.movie.duration % 60
+              }м`
+            : `${props.movie.duration}м`}
+        </p>
       </div>
     </li>
   );
