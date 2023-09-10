@@ -1,4 +1,5 @@
 import React, { useCallback } from "react";
+import { CurrentUserContext } from "../context/CurrentUserContext";
 
 //хук управления формой
 export function useForm() {
@@ -19,6 +20,16 @@ export function useFormWithValidation() {
   const [values, setValues] = React.useState({});
   const [errors, setErrors] = React.useState({});
   const [isValid, setIsValid] = React.useState(false);
+  const currentUser = React.useContext(CurrentUserContext);
+
+  React.useEffect(() => {
+    if (
+      values.name === currentUser.name &&
+      values.email === currentUser.email
+    ) {
+      setIsValid(false);
+    }
+  }, [values, currentUser]);
 
   const handleChange = (event) => {
     const target = event.target;

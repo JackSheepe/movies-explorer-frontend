@@ -1,8 +1,8 @@
 import React from "react";
 import "./Movies.css";
-import SearchForm from "./SearchForm/SearchForm";
-import MoviesCardList from "./MoviesCardList/MoviesCardList";
-import Preloader from "./Preloader/Preloader";
+import SearchForm from "../SearchForm/SearchForm";
+import MoviesCardList from "../MoviesCardList/MoviesCardList";
+import Preloader from "../Preloader/Preloader";
 
 function Movies(props) {
   props.useDocumentTitle("Фильмы");
@@ -13,6 +13,7 @@ function Movies(props) {
         onSearch={props.onSearch}
         isSearching={props.isSearching}
         onSavedMoviesSearch={props.onSavedMoviesSearch}
+        onCheckboxChange={props.onCheckboxChange}
       />
       {props.isSearchDone ? (
         props.isSearching ? (

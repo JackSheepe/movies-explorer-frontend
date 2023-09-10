@@ -38,6 +38,7 @@ function Login(props) {
                 value={values.email || ""}
                 onChange={handleChange}
                 placeholder="E-mail"
+                pattern="[^@!#$%&*;:'`~+=\|\?\/\{\}\^\s]+@[^@\s]+\.[^@\s]+"
                 required
               />
             </div>

@@ -11,8 +11,14 @@ function MoviesCard(props) {
   }
 
   function handleLikeClick() {
-    setIsLiked(!isLiked);
-    props.onLike(props.movie, isLiked);
+    props
+      .onLike(props.movie, isLiked)
+      .then(() => {
+        setIsLiked(!isLiked);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   }
 
   return (

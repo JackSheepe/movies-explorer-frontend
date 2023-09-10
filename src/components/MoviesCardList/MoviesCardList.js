@@ -59,19 +59,37 @@ function MoviesCardList(props) {
   return (
     <section className="movies-card-list">
       <ul className="movies-card-list__movies">
-        {location.pathname === "/saved-movies"
-          ? props.resultsOfSavedMoviesSearch.length > 0
-            ? props.resultsOfSavedMoviesSearch.map((movie, i) => (
-                <MoviesCard key={i} movie={movie} onLike={props.onLike} />
+        {location.pathname === "/saved-movies" ? (
+          props.isSearchingInSaved ? (
+            props.resultsOfSavedMoviesSearch.length > 0 ? (
+              props.resultsOfSavedMoviesSearch.map((movie, i) => (
+                <MoviesCard
+                  key={movie._id}
+                  movie={movie}
+                  onLike={props.onLike}
+                />
               ))
-            : props.savedMovies
-                .filter((movie) => movie.isLiked)
-                .map((movie, i) => (
-                  <MoviesCard key={i} movie={movie} onLike={props.onLike} />
-                ))
-          : props.resultsOfMoviesSearch.map((movie, i) => (
-              <MoviesCard key={i} movie={movie} onLike={props.onLike} />
-            ))}
+            ) : (
+              <p className="movies__notfound">Ничего не найдено</p>
+            )
+          ) : (
+            props.savedMovies
+              .filter((movie) => movie.isLiked)
+              .map((movie, i) => (
+                <MoviesCard
+                  key={movie._id}
+                  movie={movie}
+                  onLike={props.onLike}
+                />
+              ))
+          )
+        ) : (
+          props.resultsOfMoviesSearch
+            .slice(0, visibleCards)
+            .map((movie, i) => (
+              <MoviesCard key={movie._id} movie={movie} onLike={props.onLike} />
+            ))
+        )}
       </ul>
       {location.pathname === "/movies" &&
         visibleCards < props.resultsOfMoviesSearch.length && (

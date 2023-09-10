@@ -1,6 +1,6 @@
 import React from "react";
 import "./SearchForm.css";
-import search from "../../../images/search.svg";
+import search from "../../images/search.svg";
 import FilterCheckbox from "./FilterCheckbox";
 
 function SearchForm(props) {
@@ -45,6 +45,8 @@ function SearchForm(props) {
 
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
+    const regex = new RegExp(searchQuery, "i");
+    props.onCheckboxChange(!isChecked, regex);
   };
 
   return (

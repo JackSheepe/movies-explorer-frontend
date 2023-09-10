@@ -14,10 +14,8 @@ function Profile(props) {
 
   function handleChangeBtnClick() {
     setIsChanging(!isChanging);
-    currentUser.name = "";
-    currentUser.email = "";
-    values.name = "";
-    values.email = "";
+    values.name = currentUser.name;
+    values.email = currentUser.email;
   }
 
   const handleSubmit = (event) => {
@@ -29,7 +27,7 @@ function Profile(props) {
   return (
     <main>
       <section className="profile">
-        <h1 className="profile__heading">Привет, Владимир!</h1>
+        <h1 className="profile__heading">Привет, {currentUser.name}!</h1>
         <form className="profile__form" onSubmit={handleSubmit}>
           <div className="profile__form-inputs">
             <div className="profile__form-input-container">
@@ -48,6 +46,7 @@ function Profile(props) {
                 placeholder="Имя"
                 minLength="2"
                 maxLength="30"
+                required
               />
             </div>
             <div className="profile__form-input-container">
@@ -63,7 +62,9 @@ function Profile(props) {
                 name="email"
                 value={values.email || currentUser.email}
                 onChange={handleChange}
+                pattern="[^@!#$%&*;:'`~+=\|\?\/\{\}\^\s]+@[^@\s]+\.[^@\s]+"
                 placeholder="E-mail"
+                required
               />
             </div>
           </div>

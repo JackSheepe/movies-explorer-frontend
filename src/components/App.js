@@ -12,7 +12,7 @@ import Login from "./Login/Login";
 import NotFound from "./NotFound/NotFound";
 import BurgerMenu from "./BurgerMenu/BurgerMenu";
 import ApiError from "./ApiError/ApiError";
-import ProtectedRoute from "../utils/ProtectedRoute";
+import ProtectedRoute from "./ProtectedRoute/ProtectedRoute";
 import { moviesApi } from "../utils/MoviesApi";
 import * as MainApi from "../utils/MainApi";
 import { CurrentUserContext } from "../context/CurrentUserContext.js";
@@ -88,7 +88,7 @@ function App() {
           setIsApiErrorOpen(true);
         } else {
           console.log(res);
-          navigate("/signin", { replace: true });
+          handleLogin(email, password);
         }
       })
       .catch((err) => {
@@ -106,7 +106,7 @@ function App() {
           setIsApiErrorOpen(true);
         } else {
           console.log(res);
-          navigate("/profile", { replace: true });
+          window.location.reload();
         }
       })
       .catch((err) => {
@@ -140,7 +140,7 @@ function App() {
   React.useEffect(() => {
     console.log(savedMovies);
 
-    if (jwt && savedMovies.length === 0) {
+    if (jwt) {
       MainApi.getMyMovies()
         .then((data) => {
           const moviesFromApi = data;
@@ -224,8 +224,11 @@ function App() {
     }
   }
 
+  const [isSearchingInSaved, setIsSearchingInSaved] = React.useState(false);
+
   function handleSavedMoviesSearch(isChecked, regex) {
     setIsSearching(true);
+    setIsSearchingInSaved(true);
     const results = savedMovies.filter((movie) => {
       const durationCondition = isChecked ? movie.duration <= 40 : true;
       return (
@@ -236,6 +239,28 @@ function App() {
     setResultsOfSavedMoviesSearch(results);
     console.log(resultsOfSavedMoviesSearch);
     setIsSearching(false);
+  }
+
+  function handleShortMoviesCheckboxChange(isChecked, regex) {
+    setIsSearchingInSaved(true);
+    setResultsOfSavedMoviesSearch(
+      savedMovies.filter((movie) => {
+        const durationCondition = isChecked ? movie.duration <= 40 : true;
+        return (
+          (regex.test(movie.nameRU) || regex.test(movie.nameEN)) &&
+          durationCondition
+        );
+      })
+    );
+    setResultsOfMoviesSearch(
+      movies.filter((movie) => {
+        const durationCondition = isChecked ? movie.duration <= 40 : true;
+        return (
+          (regex.test(movie.nameRU) || regex.test(movie.nameEN)) &&
+          durationCondition
+        );
+      })
+    );
   }
 
   function handleLogout() {
@@ -252,68 +277,77 @@ function App() {
     window.location.reload();
   }
 
+  function updateMovies(array, setter, movie) {
+    const updatedMovies = array.map((m) => {
+      if (m.movieId === movie.movieId) {
+        return {
+          ...m,
+          isLiked: !m.isLiked,
+        };
+      }
+      return m;
+    });
+    setter(updatedMovies);
+  }
+
   function handleMovieLike(movie, isLiked) {
-    !isLiked
-      ? MainApi.postMovie(movie)
+    return new Promise((resolve, reject) => {
+      if (!isLiked) {
+        MainApi.postMovie(movie)
           .then((res) => {
             console.log(res);
             if (res.error) {
               setIsApiErrorOpen(true);
+              reject(res.error);
             } else {
               console.log(res);
-              const updatedMovies = movies.map((m) => {
-                if (m.movieId === movie.movieId) {
-                  return {
-                    ...m,
-                    isLiked: !m.isLiked,
-                  };
-                }
-                return m;
-              });
-              setMovies(updatedMovies);
+              updateMovies(movies, setMovies, movie);
+              updateMovies(
+                resultsOfMoviesSearch,
+                setResultsOfMoviesSearch,
+                movie
+              );
+              resolve();
             }
           })
           .catch((err) => {
             console.error(err);
             setErrText(err);
             setIsApiErrorOpen(true);
-          })
-      : MainApi.deleteMovie(movie.movieId)
-          .then((res) => {
-            console.log(res);
-            if (res.error) {
-              setIsApiErrorOpen(true);
-            } else {
-              console.log(res);
-              const updatedMovies = movies.map((m) => {
-                if (m._id === movie._id) {
-                  return {
-                    ...m,
-                    isLiked: !m.isLiked,
-                  };
-                }
-                return m;
-              });
-              const updatedSavedMovies = savedMovies.map((m) => {
-                console.log(m);
-                console.log(movie);
-                if (m._id === movie._id) {
-                  return {
-                    ...m,
-                    isLiked: !m.isLiked,
-                  };
-                }
-                return m;
-              });
-              setMovies(updatedMovies);
-              setSavedMovies(updatedSavedMovies);
-            }
-          })
-          .catch((err) => {
-            console.error(err);
-            setErrText(err);
-            setIsApiErrorOpen(true);
+            reject(err);
           });
+      } else {
+        MainApi.deleteMovie(movie.movieId)
+          .then((res) => {
+            console.log(res);
+            if (res.error) {
+              setIsApiErrorOpen(true);
+              reject(res.error);
+            } else {
+              console.log(res);
+              updateMovies(movies, setMovies, movie);
+              updateMovies(
+                resultsOfMoviesSearch,
+                setResultsOfMoviesSearch,
+                movie
+              );
+              updateMovies(savedMovies, setSavedMovies, movie);
+              updateMovies(
+                resultsOfSavedMoviesSearch,
+                setResultsOfSavedMoviesSearch,
+                movie
+              );
+              resolve();
+            }
+          })
+          .catch((err) => {
+            console.error(err);
+            setErrText(err);
+            setIsApiErrorOpen(true);
+            reject(err);
+          });
+      }
+    });
   }
 
   return (
@@ -341,6 +375,7 @@ function App() {
                   isSearchDone={isSearchDone}
                   resultsOfMoviesSearch={resultsOfMoviesSearch}
                   onLike={handleMovieLike}
+                  onCheckboxChange={handleShortMoviesCheckboxChange}
                 />
               </ProtectedRoute>
             }
@@ -355,6 +390,8 @@ function App() {
                   useDocumentTitle={useDocumentTitle}
                   onSavedMoviesSearch={handleSavedMoviesSearch}
                   onLike={handleMovieLike}
+                  onCheckboxChange={handleShortMoviesCheckboxChange}
+                  isSearchingInSaved={isSearchingInSaved}
                 />
               </ProtectedRoute>
             }
@@ -374,19 +411,23 @@ function App() {
           <Route
             path="/signin"
             element={
-              <Login
-                useDocumentTitle={useDocumentTitle}
-                onLogin={handleLogin}
-              />
+              <ProtectedRoute loggedIn={!loggedIn}>
+                <Login
+                  useDocumentTitle={useDocumentTitle}
+                  onLogin={handleLogin}
+                />
+              </ProtectedRoute>
             }
           />
           <Route
             path="/signup"
             element={
-              <Register
-                useDocumentTitle={useDocumentTitle}
-                onRegister={handleRegister}
-              />
+              <ProtectedRoute loggedIn={!loggedIn}>
+                <Register
+                  useDocumentTitle={useDocumentTitle}
+                  onRegister={handleRegister}
+                />
+              </ProtectedRoute>
             }
           />
           <Route

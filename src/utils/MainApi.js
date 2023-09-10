@@ -79,7 +79,6 @@ export const postMovie = (movie) => {
       movieId: movie.movieId,
       nameRU: movie.nameRU,
       nameEN: movie.nameEN,
-      owner: movie.owner,
     }),
   }).then((res) => _getResponseData(res));
 };

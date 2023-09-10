@@ -1,7 +1,7 @@
 import "./SavedMovies.css";
-import SearchForm from "../Movies/SearchForm/SearchForm";
-import MoviesCardList from "../Movies/MoviesCardList/MoviesCardList";
-import Preloader from "../Movies/Preloader/Preloader";
+import SearchForm from "../SearchForm/SearchForm";
+import MoviesCardList from "../MoviesCardList/MoviesCardList";
+import Preloader from "../Preloader/Preloader";
 
 function SavedMovies(props) {
   props.useDocumentTitle("Сохранённые Фильмы");
@@ -11,6 +11,7 @@ function SavedMovies(props) {
       <SearchForm
         isSearching={props.isSearching}
         onSavedMoviesSearch={props.onSavedMoviesSearch}
+        onCheckboxChange={props.onCheckboxChange}
       />
       {props.isSearching ? (
         <Preloader />
@@ -19,6 +20,7 @@ function SavedMovies(props) {
           resultsOfSavedMoviesSearch={props.resultsOfSavedMoviesSearch}
           savedMovies={props.savedMovies}
           onLike={props.onLike}
+          isSearchingInSaved={props.isSearchingInSaved}
         />
       ) : (
         <p className="movies__notfound">Ничего не найдено</p>
