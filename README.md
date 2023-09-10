@@ -4,6 +4,9 @@
 
 ## Дипломная работа, фронт-энд
 
+ссылка на сайт https://movies.puppies.nomoredomainsicu.ru/
+ссылка на api https://api.movies.puppies.nomoreparties.co/
+
 ссылка на pullRequest https://github.com/JackSheepe/movies-explorer-frontend/pull/2
 
 Использованный макет: light-4
