@@ -98,6 +98,8 @@ function App() {
       });
   }
 
+  const [isProfileChanging, setIsProfileChanging] = React.useState(false);
+
   function handleEditUser(name, email) {
     MainApi.editUser(name, email)
       .then((res) => {
@@ -106,7 +108,7 @@ function App() {
           setIsApiErrorOpen(true);
         } else {
           console.log(res);
-          window.location.reload();
+          setIsProfileChanging(false);
         }
       })
       .catch((err) => {
@@ -404,6 +406,8 @@ function App() {
                   useDocumentTitle={useDocumentTitle}
                   onLogout={handleLogout}
                   onSubmit={handleEditUser}
+                  isProfileChanging={isProfileChanging}
+                  setIsProfileChanging={setIsProfileChanging}
                 />
               </ProtectedRoute>
             }

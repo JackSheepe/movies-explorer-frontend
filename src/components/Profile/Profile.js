@@ -10,10 +10,8 @@ function Profile(props) {
 
   const currentUser = React.useContext(CurrentUserContext);
 
-  const [isChanging, setIsChanging] = React.useState(false);
-
   function handleChangeBtnClick() {
-    setIsChanging(!isChanging);
+    props.setIsProfileChanging(true);
     values.name = currentUser.name;
     values.email = currentUser.email;
   }
@@ -36,7 +34,7 @@ function Profile(props) {
               </label>
               <input
                 className={`profile__form-input ${
-                  isChanging ? "" : "profile__form-input_disabled"
+                  props.isProfileChanging ? "" : "profile__form-input_disabled"
                 }`}
                 type="text"
                 id="name"
@@ -55,7 +53,7 @@ function Profile(props) {
               </label>
               <input
                 className={`profile__form-input ${
-                  isChanging ? "" : "profile__form-input_disabled"
+                  props.isProfileChanging ? "" : "profile__form-input_disabled"
                 }`}
                 type="email"
                 id="email"
@@ -79,7 +77,7 @@ function Profile(props) {
           </span>
           <button
             className={`profile__form-submit btn ${
-              isChanging ? "profile__form-submit_shown" : ""
+              props.isProfileChanging ? "profile__form-submit_shown" : ""
             } ${isValid ? "" : "profile__form-submit_disabled"}`}
             type="submit"
             onClick={handleSubmit}
@@ -89,7 +87,7 @@ function Profile(props) {
         </form>
         <button
           className={`profile__form-change btn ${
-            isChanging ? "profile__form-change_hidden" : ""
+            props.isProfileChanging ? "profile__form-change_hidden" : ""
           }`}
           type="button"
           onClick={handleChangeBtnClick}
@@ -98,7 +96,7 @@ function Profile(props) {
         </button>
         <button
           className={`profile__exit-btn btn ${
-            isChanging ? "profile__exit-btn_hidden" : ""
+            props.isProfileChanging ? "profile__exit-btn_hidden" : ""
           }`}
           onClick={props.onLogout}
         >
