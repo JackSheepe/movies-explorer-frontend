@@ -79,6 +79,7 @@ function Login(props) {
               !isValid ? "sign-in-up__form-submit_error" : ""
             }`}
             type="submit"
+            disabled={props.isSubmiting ? true : false}
           >
             Войти
           </button>

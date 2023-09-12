@@ -66,7 +66,11 @@ function SearchForm(props) {
             value={searchQuery}
             onChange={handleInputChange}
           />
-          <button className="search-form__button btn" type="submit">
+          <button
+            className="search-form__button btn"
+            type="submit"
+            disabled={props.isSearching ? true : false}
+          >
             Найти
           </button>
         </div>

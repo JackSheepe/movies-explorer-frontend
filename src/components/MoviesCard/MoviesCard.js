@@ -27,9 +27,9 @@ function MoviesCard(props) {
         <img
           className="movie__img btn"
           src={
-            location.pathname === "/saved-movies"
-              ? props.movie.image
-              : `https://api.nomoreparties.co${props.movie.image.url}`
+            typeof props.movie.image === "object"
+              ? `https://api.nomoreparties.co${props.movie.image.url}`
+              : props.movie.image
           }
           alt={props.movie.nameRU}
           onClick={handleImgClick}

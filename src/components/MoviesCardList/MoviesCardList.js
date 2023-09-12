@@ -64,7 +64,7 @@ function MoviesCardList(props) {
             props.resultsOfSavedMoviesSearch.length > 0 ? (
               props.resultsOfSavedMoviesSearch.map((movie, i) => (
                 <MoviesCard
-                  key={movie._id}
+                  key={movie.trailerLink}
                   movie={movie}
                   onLike={props.onLike}
                 />
@@ -77,7 +77,7 @@ function MoviesCardList(props) {
               .filter((movie) => movie.isLiked)
               .map((movie, i) => (
                 <MoviesCard
-                  key={movie._id}
+                  key={movie.trailerLink}
                   movie={movie}
                   onLike={props.onLike}
                 />
@@ -87,7 +87,11 @@ function MoviesCardList(props) {
           props.resultsOfMoviesSearch
             .slice(0, visibleCards)
             .map((movie, i) => (
-              <MoviesCard key={movie._id} movie={movie} onLike={props.onLike} />
+              <MoviesCard
+                key={movie.trailerLink}
+                movie={movie}
+                onLike={props.onLike}
+              />
             ))
         )}
       </ul>

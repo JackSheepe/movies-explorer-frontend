@@ -12,6 +12,7 @@ import Login from "./Login/Login";
 import NotFound from "./NotFound/NotFound";
 import BurgerMenu from "./BurgerMenu/BurgerMenu";
 import ApiError from "./ApiError/ApiError";
+import ApiSuccess from "./ApiSuccess/ApiSuccess";
 import ProtectedRoute from "./ProtectedRoute/ProtectedRoute";
 import { moviesApi } from "../utils/MoviesApi";
 import * as MainApi from "../utils/MainApi";
@@ -24,11 +25,13 @@ function App() {
   const currentUserContext = React.useContext(CurrentUserContext);
   const [currentUser, setCurrentUser] = React.useState(currentUserContext);
   const [isBurgerMenuOpen, setIsBurgerMenuOpen] = React.useState(false);
+  const [isSubmiting, setIsSubmiting] = React.useState(false);
   const [isSearching, setIsSearching] = React.useState(false);
   const [isSearchDone, setIsSearchDone] = React.useState(
     localStorage.getItem("isSearchDone") === "true"
   );
   const [isApiErrorOpen, setIsApiErrorOpen] = React.useState(false);
+  const [isApiSuccessOpen, setIsApiSuccessOpen] = React.useState(false);
   const [errText, setErrText] = React.useState(
     "Что-то пошло не так! Попробуйте еще раз."
   );
@@ -62,13 +65,17 @@ function App() {
   };
 
   function handleLogin(email, password) {
+    setIsSubmiting(true);
+
     MainApi.login(email, password)
       .then((res) => {
         console.log(res);
         if (res.error) {
           setIsApiErrorOpen(true);
+          setIsSubmiting(false);
         } else {
           console.log(res);
+          setIsSubmiting(false);
           setLoggedIn(true);
           localStorage.setItem("token", res.token);
           navigate("/movies", { replace: true });
@@ -77,22 +84,28 @@ function App() {
       .catch((err) => {
         setErrText(err);
         setIsApiErrorOpen(true);
+        setIsSubmiting(false);
       });
   }
 
   function handleRegister(name, email, password) {
+    setIsSubmiting(true);
+
     MainApi.register(name, email, password)
       .then((res) => {
         console.log(res);
         if (res.error) {
           setIsApiErrorOpen(true);
+          setIsSubmiting(false);
         } else {
           console.log(res);
+          setIsSubmiting(false);
           handleLogin(email, password);
         }
       })
       .catch((err) => {
         console.error(err);
+        setIsSubmiting(false);
         setErrText(err);
         setIsApiErrorOpen(true);
       });
@@ -101,18 +114,24 @@ function App() {
   const [isProfileChanging, setIsProfileChanging] = React.useState(false);
 
   function handleEditUser(name, email) {
+    setIsSubmiting(true);
+
     MainApi.editUser(name, email)
       .then((res) => {
         console.log(res);
         if (res.error) {
           setIsApiErrorOpen(true);
+          setIsSubmiting(false);
         } else {
           console.log(res);
           setIsProfileChanging(false);
+          setIsSubmiting(false);
+          setIsApiSuccessOpen(true);
         }
       })
       .catch((err) => {
         console.error(err);
+        setIsSubmiting(false);
         setErrText(err);
         setIsApiErrorOpen(true);
       });
@@ -129,6 +148,10 @@ function App() {
     JSON.parse(localStorage.getItem("results")) || []
   );
 
+  React.useEffect(() => {
+    localStorage.setItem("results", JSON.stringify(resultsOfMoviesSearch));
+  }, [resultsOfMoviesSearch]);
+
   const [savedMovies, setSavedMovies] = React.useState(
     JSON.parse(localStorage.getItem("savedMovies")) || []
   );
@@ -142,7 +165,7 @@ function App() {
   React.useEffect(() => {
     console.log(savedMovies);
 
-    if (jwt) {
+    if (jwt && savedMovies.length === 0) {
       MainApi.getMyMovies()
         .then((data) => {
           const moviesFromApi = data;
@@ -182,12 +205,13 @@ function App() {
         .then((data) => {
           const moviesFromApi = data;
           moviesFromApi.forEach((movie) => {
-            movie.isLiked = false;
+            let found = savedMovies.find((m) => m.movieId === movie.id);
+            found ? (movie.isLiked = true) : (movie.isLiked = false);
             movie.owner = currentUser._id;
             movie.movieId = movie.id;
           });
+          console.log(moviesFromApi);
           setMovies(moviesFromApi);
-          localStorage.setItem("movies", JSON.stringify(moviesFromApi));
           const results = moviesFromApi.filter((movie) => {
             const durationCondition = isChecked ? movie.duration <= 40 : true;
             return (
@@ -196,7 +220,6 @@ function App() {
             );
           });
           setResultsOfMoviesSearch(results);
-          localStorage.setItem("results", JSON.stringify(results));
           setIsSearching(false);
           setIsSearchDone(true);
           console.log(resultsOfMoviesSearch);
@@ -220,7 +243,6 @@ function App() {
         );
       });
       setResultsOfMoviesSearch(results);
-      localStorage.setItem("results", JSON.stringify(results));
       console.log(resultsOfMoviesSearch);
       setIsSearching(false);
     }
@@ -244,25 +266,28 @@ function App() {
   }
 
   function handleShortMoviesCheckboxChange(isChecked, regex) {
-    setIsSearchingInSaved(true);
-    setResultsOfSavedMoviesSearch(
-      savedMovies.filter((movie) => {
-        const durationCondition = isChecked ? movie.duration <= 40 : true;
-        return (
-          (regex.test(movie.nameRU) || regex.test(movie.nameEN)) &&
-          durationCondition
-        );
-      })
-    );
-    setResultsOfMoviesSearch(
-      movies.filter((movie) => {
-        const durationCondition = isChecked ? movie.duration <= 40 : true;
-        return (
-          (regex.test(movie.nameRU) || regex.test(movie.nameEN)) &&
-          durationCondition
-        );
-      })
-    );
+    if (window.location.pathname === "/saved-movies") {
+      setIsSearchingInSaved(true);
+      setResultsOfSavedMoviesSearch(
+        savedMovies.filter((movie) => {
+          const durationCondition = isChecked ? movie.duration <= 40 : true;
+          return (
+            (regex.test(movie.nameRU) || regex.test(movie.nameEN)) &&
+            durationCondition
+          );
+        })
+      );
+    } else {
+      setResultsOfMoviesSearch(
+        movies.filter((movie) => {
+          const durationCondition = isChecked ? movie.duration <= 40 : true;
+          return (
+            (regex.test(movie.nameRU) || regex.test(movie.nameEN)) &&
+            durationCondition
+          );
+        })
+      );
+    }
   }
 
   function handleLogout() {
@@ -309,6 +334,9 @@ function App() {
                 setResultsOfMoviesSearch,
                 movie
               );
+              const movieWithLike = { ...movie, isLiked: true };
+              console.log(movie);
+              setSavedMovies((prevMovies) => [...prevMovies, movieWithLike]);
               resolve();
             }
           })
@@ -408,6 +436,7 @@ function App() {
                   onSubmit={handleEditUser}
                   isProfileChanging={isProfileChanging}
                   setIsProfileChanging={setIsProfileChanging}
+                  isSubmiting={isSubmiting}
                 />
               </ProtectedRoute>
             }
@@ -419,6 +448,7 @@ function App() {
                 <Login
                   useDocumentTitle={useDocumentTitle}
                   onLogin={handleLogin}
+                  isSubmiting={isSubmiting}
                 />
               </ProtectedRoute>
             }
@@ -430,6 +460,7 @@ function App() {
                 <Register
                   useDocumentTitle={useDocumentTitle}
                   onRegister={handleRegister}
+                  isSubmiting={isSubmiting}
                 />
               </ProtectedRoute>
             }
@@ -449,6 +480,10 @@ function App() {
           isApiErrorOpen={isApiErrorOpen}
           setIsApiErrorOpen={setIsApiErrorOpen}
           errText={errText}
+        />
+        <ApiSuccess
+          isApiSuccessOpen={isApiSuccessOpen}
+          setIsApiSuccessOpen={setIsApiSuccessOpen}
         />
       </div>
     </CurrentUserContext.Provider>

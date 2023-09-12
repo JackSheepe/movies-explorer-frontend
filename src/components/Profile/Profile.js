@@ -81,6 +81,7 @@ function Profile(props) {
             } ${isValid ? "" : "profile__form-submit_disabled"}`}
             type="submit"
             onClick={handleSubmit}
+            disabled={props.isSubmiting ? true : false}
           >
             Редактировать
           </button>
