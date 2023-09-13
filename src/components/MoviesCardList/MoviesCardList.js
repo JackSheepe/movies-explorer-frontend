@@ -73,15 +73,13 @@ function MoviesCardList(props) {
               <p className="movies__notfound">Ничего не найдено</p>
             )
           ) : (
-            props.savedMovies
-              .filter((movie) => movie.isLiked)
-              .map((movie, i) => (
-                <MoviesCard
-                  key={movie.trailerLink}
-                  movie={movie}
-                  onLike={props.onLike}
-                />
-              ))
+            props.savedMovies.map((movie, i) => (
+              <MoviesCard
+                key={movie.trailerLink}
+                movie={movie}
+                onLike={props.onLike}
+              />
+            ))
           )
         ) : (
           props.resultsOfMoviesSearch

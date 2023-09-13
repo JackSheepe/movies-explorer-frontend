@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import "./App.css";
 import Header from "./Header/Header";
 import Footer from "./Footer/Footer";
@@ -19,6 +19,7 @@ import * as MainApi from "../utils/MainApi";
 import { CurrentUserContext } from "../context/CurrentUserContext.js";
 
 function App() {
+  const location = useLocation();
   const navigate = useNavigate();
   const jwt = localStorage.getItem("token");
   const [loggedIn, setLoggedIn] = React.useState(true);
@@ -161,6 +162,11 @@ function App() {
 
   const [resultsOfSavedMoviesSearch, setResultsOfSavedMoviesSearch] =
     React.useState([]);
+
+  React.useEffect(() => {
+    setIsSearchingInSaved(false);
+    setResultsOfSavedMoviesSearch([]);
+  }, [location]);
 
   React.useEffect(() => {
     console.log(savedMovies);
@@ -349,23 +355,23 @@ function App() {
       } else {
         MainApi.deleteMovie(movie.movieId)
           .then((res) => {
-            console.log(res);
             if (res.error) {
               setIsApiErrorOpen(true);
               reject(res.error);
             } else {
               console.log(res);
+              console.log(movie);
               updateMovies(movies, setMovies, movie);
               updateMovies(
                 resultsOfMoviesSearch,
                 setResultsOfMoviesSearch,
                 movie
               );
-              updateMovies(savedMovies, setSavedMovies, movie);
-              updateMovies(
-                resultsOfSavedMoviesSearch,
-                setResultsOfSavedMoviesSearch,
-                movie
+              setSavedMovies((prevMovies) =>
+                prevMovies.filter((m) => m.movieId !== movie.movieId)
+              );
+              setResultsOfSavedMoviesSearch((prevMovies) =>
+                prevMovies.filter((m) => m.movieId !== movie.movieId)
               );
               resolve();
             }
