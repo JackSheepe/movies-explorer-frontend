@@ -33,6 +33,17 @@
   margin: 64px auto 85px;
 }
 
+@media (min-width: 1300px) {
+  .movies-card-list__movies {
+    grid-template-columns: repeat(3, 360px);
+    align-content: center;
+    justify-content: center;
+  }
+  .movies-card-list__btn-more {
+    margin: 57px auto 100px;
+  }
+}
+
 @media (max-width: 1170px) {
   .movies-card-list__movies {
     row-gap: 42px;

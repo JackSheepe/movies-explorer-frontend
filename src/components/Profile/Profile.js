@@ -1,24 +1,31 @@
 import React from "react";
 import "./Profile.css";
-import { Link } from "react-router-dom";
+import { CurrentUserContext } from "../../context/CurrentUserContext";
+import { useFormWithValidation } from "../../utils/useFormValidation";
 
 function Profile(props) {
   props.useDocumentTitle("Профиль");
 
-  const [email, setEmail] = React.useState("email@email.ru");
-  const [name, setName] = React.useState("Владимир");
+  const { values, handleChange, errors, isValid } = useFormWithValidation();
 
-  const handleEmailChange = (event) => setEmail(event.target.value);
-  const handleNameChange = (event) => setName(event.target.value);
+  const currentUser = React.useContext(CurrentUserContext);
+
+  function handleChangeBtnClick() {
+    props.setIsProfileChanging(true);
+    values.name = currentUser.name;
+    values.email = currentUser.email;
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    props.onSubmit(values.name, values.email);
   };
 
   return (
     <main>
       <section className="profile">
-        <h1 className="profile__heading">Привет, Владимир!</h1>
+        <h1 className="profile__heading">Привет, {currentUser.name}!</h1>
         <form className="profile__form" onSubmit={handleSubmit}>
           <div className="profile__form-inputs">
             <div className="profile__form-input-container">
@@ -26,14 +33,18 @@ function Profile(props) {
                 Имя
               </label>
               <input
-                className="profile__form-input"
+                className={`profile__form-input ${
+                  props.isProfileChanging ? "" : "profile__form-input_disabled"
+                }`}
                 type="text"
                 id="name"
-                value={name}
-                onChange={handleNameChange}
+                name="name"
+                value={values.name || currentUser.name}
+                onChange={handleChange}
                 placeholder="Имя"
                 minLength="2"
                 maxLength="30"
+                required
               />
             </div>
             <div className="profile__form-input-container">
@@ -41,22 +52,57 @@ function Profile(props) {
                 E-mail
               </label>
               <input
-                className="profile__form-input"
+                className={`profile__form-input ${
+                  props.isProfileChanging ? "" : "profile__form-input_disabled"
+                }`}
                 type="email"
                 id="email"
-                value={email}
-                onChange={handleEmailChange}
+                name="email"
+                value={values.email || currentUser.email}
+                onChange={handleChange}
+                pattern="[^@!#$%&*;:'`~+=\|\?\/\{\}\^\s]+@[^@\s]+\.[^@\s]+"
                 placeholder="E-mail"
+                required
               />
             </div>
           </div>
-          <button className="profile__form-submit btn" type="submit">
+          <span
+            className={
+              !isValid
+                ? "profile__error-text profile__error-text_active"
+                : "profile__error-text"
+            }
+          >
+            {errors.name} {errors.email}
+          </span>
+          <button
+            className={`profile__form-submit btn ${
+              props.isProfileChanging ? "profile__form-submit_shown" : ""
+            } ${isValid ? "" : "profile__form-submit_disabled"}`}
+            type="submit"
+            onClick={handleSubmit}
+            disabled={props.isSubmiting ? true : false}
+          >
             Редактировать
           </button>
         </form>
-        <Link to="/" className="profile__exit-btn btn">
+        <button
+          className={`profile__form-change btn ${
+            props.isProfileChanging ? "profile__form-change_hidden" : ""
+          }`}
+          type="button"
+          onClick={handleChangeBtnClick}
+        >
+          Редактировать
+        </button>
+        <button
+          className={`profile__exit-btn btn ${
+            props.isProfileChanging ? "profile__exit-btn_hidden" : ""
+          }`}
+          onClick={props.onLogout}
+        >
           Выйти из аккаунта
-        </Link>
+        </button>
       </section>
     </main>
   );

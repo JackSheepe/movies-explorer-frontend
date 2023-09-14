@@ -25,6 +25,7 @@
   height: 100%;
   object-fit: cover;
   border-radius: 6px;
+  cursor: pointer;
 }
 
 .movie__like-icon {
@@ -39,7 +40,7 @@
   width: 21px;
   height: 21px;
   border-radius: 50%;
-  background: url(../../../images/save.svg);
+  background: url(../../images/save.svg);
 }
 
 .movie__like-icon_delete {
@@ -47,7 +48,7 @@
   width: 21px;
   height: 21px;
   border-radius: 50%;
-  background: url(../../../images/delete.svg);
+  background: url(../../images/delete.svg);
 }
 
 .movie__like-icon_false {

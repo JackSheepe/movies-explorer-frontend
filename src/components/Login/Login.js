@@ -2,19 +2,17 @@ import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import "./Login.css";
 import logo from "../../images/logo.svg";
+import { useFormWithValidation } from "../../utils/useFormValidation";
 
 function Login(props) {
   props.useDocumentTitle("Войти");
 
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
-  const [isValid, setIsValid] = React.useState(true);
-
-  const handleEmailChange = (event) => setEmail(event.target.value);
-  const handlePasswordChange = (event) => setPassword(event.target.value);
+  const { values, handleChange, errors, isValid } = useFormWithValidation();
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    props.onLogin(values.email, values.password);
   };
 
   return (
@@ -32,13 +30,15 @@ function Login(props) {
               </label>
               <input
                 className={`sign-in-up__form-input ${
-                  !isValid ? "sign-in-up__form-input_error" : ""
-                }}`}
+                  errors.email ? "sign-in-up__form-input_error" : ""
+                }`}
                 type="email"
+                name="email"
                 id="email"
-                value={email}
-                onChange={handleEmailChange}
+                value={values.email || ""}
+                onChange={handleChange}
                 placeholder="E-mail"
+                pattern="[^@!#$%&*;:'`~+=\|\?\/\{\}\^\s]+@[^@\s]+\.[^@\s]+"
                 required
               />
             </div>
@@ -51,12 +51,13 @@ function Login(props) {
               </label>
               <input
                 className={`sign-in-up__form-input ${
-                  !isValid ? "sign-in-up__form-input_error" : ""
-                }}`}
+                  errors.password ? "sign-in-up__form-input_error" : ""
+                }`}
                 type="password"
+                name="password"
                 id="password"
-                value={password}
-                onChange={handlePasswordChange}
+                value={values.password || ""}
+                onChange={handleChange}
                 placeholder="Пароль"
                 required
                 minLength="8"
@@ -71,11 +72,14 @@ function Login(props) {
                 : "sign-in-up__error-text"
             }
           >
-            Что-то пошло не так...
+            {errors.email} {errors.password}
           </span>
           <button
-            className="sign-in-up__form-submit sign-in-up__form-submit_login btn"
+            className={`sign-in-up__form-submit sign-in-up__form-submit_login btn ${
+              !isValid ? "sign-in-up__form-submit_error" : ""
+            }`}
             type="submit"
+            disabled={props.isSubmiting ? true : false}
           >
             Войти
           </button>

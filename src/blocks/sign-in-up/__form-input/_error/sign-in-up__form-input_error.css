@@ -1,3 +1,4 @@
 .sign-in-up__form-input_error {
   color: #ff4062;
+  outline: 1px solid #ff4062;
 }

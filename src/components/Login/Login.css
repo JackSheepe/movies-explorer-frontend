@@ -5,9 +5,11 @@
 @import url(../../blocks/sign-in-up/__form-input-container/sign-in-up__form-input-container.css);
 @import url(../../blocks/sign-in-up/__form-input-label/sign-in-up__form-input-label.css);
 @import url(../../blocks/sign-in-up/__form-input/sign-in-up__form-input.css);
+@import url(../../blocks/sign-in-up/__form-input/_error/sign-in-up__form-input_error.css);
 @import url(../../blocks/sign-in-up/__form-inputs/sign-in-up__form-inputs.css);
 @import url(../../blocks/sign-in-up/__form-submit/sign-in-up__form-submit.css);
 @import url(../../blocks/sign-in-up/__form-submit/_login/sign-in-up__form-submit_login.css);
+@import url(../../blocks/sign-in-up/__form-submit/_error/sign-in-up__form-submit_error.css);
 @import url(../../blocks/sign-in-up/__form/sign-in-up__form.css);
 @import url(../../blocks/sign-in-up/__heading/sign-in-up__heading.css);
 @import url(../../blocks/sign-in-up/__login-link/sign-in-up__login-link.css);
